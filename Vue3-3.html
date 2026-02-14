@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Изучаем Vue 3</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<div id="app">
+    <p>{{ sayHi() }}</p>
+    <p>12 часов: {{ welcome(15) }}</p>
+    <p>22 часа: {{ welcome(22) }}</p>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+Vue.createApp({
+  data() {
+    return { name: "Tom", age: 36 }
+  },
+  methods:{
+    sayHi(){
+        return 'Привет меня зовут ' + this.name;
+    },
+    welcome(hour){
+        if(hour > 21) return 'Доброй ночи.';
+        else if(hour > 16) return 'Добрый вечер!';
+        else if(hour > 11) return 'Добрый день';
+        else return 'Доброе утро';
+    }
+  }
+}).mount("#app");
+</script>
+</body>
+</html>

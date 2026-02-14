@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Изучаем Vue 3</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<div id="app">
+    <p>Name: {{ name }}</p>
+    <p>Age: {{ age }}</p>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+const app = Vue.createApp({
+  data() {
+    return { name: "Tom", age: 36 }
+  },
+  methods:{
+    incrementAge(){
+        this.age++;
+    },
+    incrementAgeThreeTimes(){
+        this.incrementAge();
+        this.incrementAge();
+        this.incrementAge();
+    }
+  }
+}).mount('#app');
+ 
+app.incrementAgeThreeTimes();
+</script>
+</body>
+</html>
