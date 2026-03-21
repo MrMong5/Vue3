@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Изучаем Vue 3</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<div id="app">
+  <table>
+    <tr>
+      <td><a @click="sortParam='title'">Модель</a></td>
+      <td><a @click="sortParam='company'">Компания</a></td>
+      <td><a @click="sortParam='price'">Цена</a></td>
+    </tr>
+    <tr v-for="phone in sortedList">
+      <td>{{phone.title}}</td><td>{{phone.company}}</td><td>{{phone.price}}</td>
+    </tr>
+  </table>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+Vue.createApp({
+  data() {
+    return { 
+      sortParam: '',
+      phones: [
+        {title:'Iphone 17 Pro Max', company:'Apple', price: 55555},
+        {title:'Galaxy S26 Ultra', company:'Samsung', price: 54356},
+        {title: 'OnePluse 16 Ultra', company:'One', price: 532114},
+        {title: 'Xiaomi 17 Ultra', company:'Xiaomi', price: 5543534}]
+      }
+  },
+  computed:{
+    sortedList(){
+      switch(this.sortParam){
+        case 'title': return this.phones.sort(sortByTitle);
+        case 'compamy': return this.phones.sort(sortByCompany);
+        case 'price': return this.phones.sort(sortByPrice);
+        default: return this.phones;
+      }
+    }
+  }
+}).mount('#app');
+
+const sortByTitle = (d1, d2) => (d1.title.toLowerCase() >= d2.title.toLowerCase()) ? 1 : -1;
+const sortByCompany = (d1, d2) => (d1.title.toLowerCase() >= d2.title.toLowerCase()) ? 1 : -1;
+const sortByPrice = (d1, d2) => (d1.price >= d2.price) ? 1 : -1;
+</script>
+</body>
+</html>
